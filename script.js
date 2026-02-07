@@ -85,6 +85,9 @@ const material = new THREE.ShaderMaterial({
             vec3 color = vec3(1.0); // белый фон
             vec2 aspect = vec2(u_resolution.x / u_resolution.y, 1.0);
             vec2 st_corrected = st * aspect;
+            
+            // расстояние от текущей точки до курсора
+            vec2 mouse_corr = u_mouse * aspect;
         
             for(int i = 0; i < 100; i++) {
                 if(i >= u_maxPoints) break;
@@ -101,18 +104,26 @@ const material = new THREE.ShaderMaterial({
                 //float d = distance(st, p) / radius;
         
                 // alpha для размытия и fade out
-                float alpha = exp(-12.0 * d * d) * exp(-age * 3.0);
+                //float alpha = exp(-12.0 * d * d) * exp(-age * 3.0);
         
                 // желтый центр → оранжевый край
                 vec3 centerColor = vec3(1.0, 1.0, 0.0); // яркий желтый
                 vec3 edgeColor = vec3(1.0, 0.6, 0.0);   // оранжевый
                 
-                float wave = 0.02 * sin(10.0 * d - u_time * 3.0);
+                float wave = 0.03 * sin(15.0 * d - u_time * 5.0);
                 float d_wave = d + wave;
                 float edge = smoothstep(0.4, 0.5, d_wave);
                 vec3 col = mix(centerColor, edgeColor, edge);
                 //vec3 col = mix(centerColor, edgeColor, smoothstep(0.0, 1.0, d));
         
+                
+                float distToMouse = distance(p_corr, mouse_corr);
+                
+                // создаем фактор fade: чем дальше курсор, тем быстрее исчезает
+                float distanceFactor = 1.0 + 3.0 * distToMouse; // можно подбирать коэффициент
+                
+                // окончательный alpha с учетом времени и расстояния до курсора
+                float alpha = exp(-age * 3.0 * distanceFactor);
                 color = mix(color, col, alpha);
             }
         
