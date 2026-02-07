@@ -57,7 +57,7 @@ window.addEventListener('mousemove', (e) => {
 });
 
 // массив точек (максимум 100)
-const MAX_POINTS = 100;
+const MAX_POINTS = 50;
 const points = [];
 for (let i = 0; i < MAX_POINTS; i++) {
     points.push({ pos: new THREE.Vector2(0, 0), birth: -1000 });
@@ -76,57 +76,46 @@ const material = new THREE.ShaderMaterial({
     fragmentShader: `
         uniform vec2 u_resolution;
         uniform float u_time;
-        uniform vec2 u_pointsPos[100];
-        uniform float u_pointsBirth[100];
+        uniform vec2 u_pointsPos[50];
+        uniform float u_pointsBirth[50];
         uniform int u_maxPoints;
-
+    
         void main() {
             vec2 st = gl_FragCoord.xy / u_resolution.xy;
             vec3 color = vec3(1.0); // белый фон
             vec2 aspect = vec2(u_resolution.x / u_resolution.y, 1.0);
             vec2 st_corrected = st * aspect;
-            
-            // расстояние от текущей точки до курсора
-            vec2 mouse_corr = u_mouse * aspect;
-        
-            for(int i = 0; i < 100; i++) {
+    
+            for(int i = 0; i < u_maxPoints; i++) {
                 if(i >= u_maxPoints) break;
-        
+    
                 vec2 p = u_pointsPos[i];
                 vec2 p_corrected = p * aspect;
                 float birth = u_pointsBirth[i];
                 float age = u_time - birth;
                 if(age < 0.0) continue;
-        
-                float radius = 0.05; // размер точки
-                
-                float d = distance(st_corrected, p_corrected) / radius;
-                //float d = distance(st, p) / radius;
-        
-                // alpha для размытия и fade out
-                //float alpha = exp(-12.0 * d * d) * exp(-age * 3.0);
-        
-                // желтый центр → оранжевый край
-                vec3 centerColor = vec3(1.0, 1.0, 0.0); // яркий желтый
-                vec3 edgeColor = vec3(1.0, 0.6, 0.0);   // оранжевый
-                
-                float wave = 0.03 * sin(15.0 * d - u_time * 5.0);
-                float d_wave = d + wave;
-                float edge = smoothstep(0.4, 0.5, d_wave);
-                vec3 col = mix(centerColor, edgeColor, edge);
-                //vec3 col = mix(centerColor, edgeColor, smoothstep(0.0, 1.0, d));
-        
-                
-                float distToMouse = distance(p_corr, mouse_corr);
-                
-                // создаем фактор fade: чем дальше курсор, тем быстрее исчезает
-                float distanceFactor = 1.0 + 3.0 * distToMouse; // можно подбирать коэффициент
-                
-                // окончательный alpha с учетом времени и расстояния до курсора
-                float alpha = exp(-age * 3.0 * distanceFactor);
+    
+                // базовый радиус точки
+                float radius = 0.03;
+    
+                // динамическое растекание
+                float dynamicRadius = radius * (1.0 + 0.5 * sin(u_time * 3.0 + float(i)));
+    
+                // расстояние до точки
+                float d = distance(st_corrected, p_corrected) / dynamicRadius;
+    
+                // alpha для fade out
+                float fadeIn = smoothstep(0.0, 0.5, age); // 0..0.5 секунды появляется плавно
+                float alpha = fadeIn * smoothstep(1.0, 0.0, d) * exp(-age * 1.5);
+                //float alpha = smoothstep(1.0, 0.0, d) * exp(-age * 1.5);
+    
+                // градиент цвета (жёлтый центр → оранжевый край)
+                vec3 centerColor = vec3(1.0, 1.0, 0.0);
+                vec3 edgeColor = vec3(1.0, 0.6, 0.0);
+                vec3 col = mix(centerColor, edgeColor, smoothstep(0.0, 1.0, d));
+    
                 color = mix(color, col, alpha);
             }
-        
             gl_FragColor = vec4(color, 1.0);
         }
 

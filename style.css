@@ -8,6 +8,8 @@ body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: #fafafa;
     color: #222;
+    cursor: url('icons/cursor.png'), auto;
+    
 }
 
 /* Заголовок */
