@@ -98,7 +98,9 @@ const material = new THREE.ShaderMaterial({
 
                 // радужный желто-оранжевый градиент
                 vec3 col = vec3(1.0, 0.7, 0.0) * (0.5 + 0.5 * sin(age * 3.0)); 
-                color += col * alpha;
+                color = color * (1.0 - alpha) + col * alpha;
+
+                //color += col * alpha;
             }
 
             gl_FragColor = vec4(color, 1.0);
