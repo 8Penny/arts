@@ -68,3 +68,53 @@ footer img:hover {
     opacity: 1;
     transform: scale(1.15);
 }
+
+/* Страница картины */
+
+.painting-page {
+    max-width: 1400px;
+    margin: auto;
+    padding: 60px 30px;
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 50px;
+    align-items: start;
+}
+
+/* Левая колонка — текст */
+
+.description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #222;
+}
+
+/* Кнопка назад */
+
+.back {
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+.back img {
+    width: 28px;
+    height: 28px;
+    opacity: 0.6;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.back img:hover {
+    opacity: 1;
+    transform: translateX(-4px);
+}
+
+/* Правая колонка — картинка */
+
+.painting-image img {
+    width: 100%;
+    max-width: 850px;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 10px;
+}
+

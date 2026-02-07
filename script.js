@@ -20,19 +20,24 @@ fetch('data.json')
             const item = data.find(p => p.id === id);
 
             painting.innerHTML = `
-        <div>
-          <a href="index.html" class="back">← Назад</a>
-          <div class="description">
-            <p><strong>${item.title}</strong></p>
-            <p>${item.year} · ${item.size}</p>
-            <p>${item.tech}</p>
-            <br>
-            <p>${item.description}</p>
-          </div>
-        </div>
-        <div>
-          <img src="${item.image}" alt="${item.title}">
-        </div>
-      `;
+    <div>
+      <a href="index.html" class="back">
+        <img src="icons/back.svg" alt="Назад">
+      </a>
+
+      <div class="description">
+        <p><strong>${item.title}</strong></p>
+        <p>${item.year} · ${item.size}</p>
+        <p>${item.tech}</p>
+        <br>
+        <p>${item.description}</p>
+      </div>
+    </div>
+
+    <div class="painting-image">
+      <img src="${item.image}" alt="${item.title}">
+    </div>
+  `;
         }
+
     });
