@@ -83,17 +83,22 @@ const material = new THREE.ShaderMaterial({
         void main() {
             vec2 st = gl_FragCoord.xy / u_resolution.xy;
             vec3 color = vec3(1.0); // белый фон
+            vec2 aspect = vec2(u_resolution.x / u_resolution.y, 1.0);
+            vec2 st_corrected = st * aspect;
         
             for(int i = 0; i < 100; i++) {
                 if(i >= u_maxPoints) break;
         
                 vec2 p = u_pointsPos[i];
+                vec2 p_corrected = p * aspect;
                 float birth = u_pointsBirth[i];
                 float age = u_time - birth;
                 if(age < 0.0) continue;
         
                 float radius = 0.05; // размер точки
-                float d = distance(st, p) / radius;
+                
+                float d = distance(st_corrected, p_corrected) / radius;
+                //float d = distance(st, p) / radius;
         
                 // alpha для размытия и fade out
                 float alpha = exp(-12.0 * d * d) * exp(-age * 3.0);
@@ -101,7 +106,12 @@ const material = new THREE.ShaderMaterial({
                 // желтый центр → оранжевый край
                 vec3 centerColor = vec3(1.0, 1.0, 0.0); // яркий желтый
                 vec3 edgeColor = vec3(1.0, 0.6, 0.0);   // оранжевый
-                vec3 col = mix(centerColor, edgeColor, smoothstep(0.0, 1.0, d));
+                
+                float wave = 0.02 * sin(10.0 * d - u_time * 3.0);
+                float d_wave = d + wave;
+                float edge = smoothstep(0.4, 0.5, d_wave);
+                vec3 col = mix(centerColor, edgeColor, edge);
+                //vec3 col = mix(centerColor, edgeColor, smoothstep(0.0, 1.0, d));
         
                 color = mix(color, col, alpha);
             }
