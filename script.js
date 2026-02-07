@@ -82,7 +82,7 @@ const material = new THREE.ShaderMaterial({
 
         void main() {
             vec2 st = gl_FragCoord.xy / u_resolution.xy;
-            vec3 color = vec3(0.0);
+            vec3 color = vec3(1.0);
 
             for(int i = 0; i < 100; i++) {
                 if(i >= u_maxPoints) break;
@@ -92,9 +92,9 @@ const material = new THREE.ShaderMaterial({
                 float age = u_time - birth;
                 if(age < 0.0) continue;
 
-                float radius = 0.1 + 0.15 * sin(age * 2.0); // пульсирующий размер
-                float d = distance(st, p);
-                float alpha = exp(-20.0 * d * d) * exp(-age * 0.5); // fade out с течением времени
+                float radius = 0.02;                     // меньше размер
+                float d = distance(st, p) / radius;      // учитываем радиус
+                float alpha = exp(-10.0 * d * d) * exp(-age * 2.5); // fade out быстрее
 
                 // радужный желто-оранжевый градиент
                 vec3 col = vec3(1.0, 0.7, 0.0) * (0.5 + 0.5 * sin(age * 3.0)); 
