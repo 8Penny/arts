@@ -82,29 +82,33 @@ const material = new THREE.ShaderMaterial({
 
         void main() {
             vec2 st = gl_FragCoord.xy / u_resolution.xy;
-            vec3 color = vec3(1.0);
-
+            vec3 color = vec3(1.0); // белый фон
+        
             for(int i = 0; i < 100; i++) {
                 if(i >= u_maxPoints) break;
-
+        
                 vec2 p = u_pointsPos[i];
                 float birth = u_pointsBirth[i];
                 float age = u_time - birth;
                 if(age < 0.0) continue;
-
-                float radius = 0.02;                     // меньше размер
-                float d = distance(st, p) / radius;      // учитываем радиус
-                float alpha = exp(-10.0 * d * d) * exp(-age * 2.5); // fade out быстрее
-
-                // радужный желто-оранжевый градиент
-                vec3 col = vec3(1.0, 0.7, 0.0) * (0.5 + 0.5 * sin(age * 3.0)); 
-                color = color * (1.0 - alpha) + col * alpha;
-
-                //color += col * alpha;
+        
+                float radius = 0.05; // размер точки
+                float d = distance(st, p) / radius;
+        
+                // alpha для размытия и fade out
+                float alpha = exp(-12.0 * d * d) * exp(-age * 3.0);
+        
+                // желтый центр → оранжевый край
+                vec3 centerColor = vec3(1.0, 1.0, 0.0); // яркий желтый
+                vec3 edgeColor = vec3(1.0, 0.6, 0.0);   // оранжевый
+                vec3 col = mix(centerColor, edgeColor, smoothstep(0.0, 1.0, d));
+        
+                color = mix(color, col, alpha);
             }
-
+        
             gl_FragColor = vec4(color, 1.0);
         }
+
     `
 });
 
