@@ -44,37 +44,62 @@ fetch('data.json')
 
 
 const canvas = document.getElementById('shader-canvas');
-
 const scene = new THREE.Scene();
 const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+const renderer = new THREE.WebGLRenderer({ canvas });
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 // курсор
-const mouse = { x: 0.5, y: 0.5 };
+const mouse = { x: 0, y: 0 };
 window.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX / window.innerWidth;
     mouse.y = 1 - e.clientY / window.innerHeight;
 });
+
+// массив точек (максимум 100)
+const MAX_POINTS = 100;
+const points = [];
+for (let i = 0; i < MAX_POINTS; i++) {
+    points.push({ pos: new THREE.Vector2(0, 0), birth: -1000 });
+}
 
 // шейдер
 const material = new THREE.ShaderMaterial({
     uniforms: {
         u_time: { value: 0 },
         u_mouse: { value: new THREE.Vector2(mouse.x, mouse.y) },
-        u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) }
+        u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+        u_pointsPos: { value: points.map(p => p.pos) },
+        u_pointsBirth: { value: points.map(p => p.birth) },
+        u_maxPoints: { value: MAX_POINTS }
     },
     fragmentShader: `
         uniform vec2 u_resolution;
-        uniform vec2 u_mouse;
         uniform float u_time;
+        uniform vec2 u_pointsPos[100];
+        uniform float u_pointsBirth[100];
+        uniform int u_maxPoints;
 
         void main() {
             vec2 st = gl_FragCoord.xy / u_resolution.xy;
-            float dist = distance(st, u_mouse);
             vec3 color = vec3(0.0);
 
-            color = mix(color, vec3(0.2, 0.6, 1.0), exp(-10.0 * dist * dist));
+            for(int i = 0; i < 100; i++) {
+                if(i >= u_maxPoints) break;
+
+                vec2 p = u_pointsPos[i];
+                float birth = u_pointsBirth[i];
+                float age = u_time - birth;
+                if(age < 0.0) continue;
+
+                float radius = 0.1 + 0.15 * sin(age * 2.0); // пульсирующий размер
+                float d = distance(st, p);
+                float alpha = exp(-20.0 * d * d) * exp(-age * 0.5); // fade out с течением времени
+
+                // радужный желто-оранжевый градиент
+                vec3 col = vec3(1.0, 0.7, 0.0) * (0.5 + 0.5 * sin(age * 3.0)); 
+                color += col * alpha;
+            }
 
             gl_FragColor = vec4(color, 1.0);
         }
@@ -85,16 +110,37 @@ const geometry = new THREE.PlaneGeometry(2, 2);
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 
+// добавляем точку при движении курсора
+function addPoint() {
+    // ищем старую точку
+    let oldest = points[0];
+    for (let p of points) {
+        if (p.birth < oldest.birth) oldest = p;
+    }
+    oldest.pos.set(mouse.x, mouse.y);
+    oldest.birth = material.uniforms.u_time.value;
+}
+
+// анимация
 function animate(time) {
     material.uniforms.u_time.value = time * 0.001;
-    material.uniforms.u_mouse.value.set(mouse.x, mouse.y);
+
+    // обновляем массив точек в шейдере
+    material.uniforms.u_pointsPos.value = points.map(p => p.pos);
+    material.uniforms.u_pointsBirth.value = points.map(p => p.birth);
+
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
 }
 
 animate();
 
-// автообновление при ресайзе окна
+// при движении курсора создаём новые точки
+window.addEventListener('mousemove', () => {
+    addPoint();
+});
+
+// ресайз
 window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     material.uniforms.u_resolution.value.set(window.innerWidth, window.innerHeight);
