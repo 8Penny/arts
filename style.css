@@ -70,13 +70,13 @@ footer img:hover {
 }
 
 .card .caption {
-    margin-top: 6px;
     font-size: 13px;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.03em;
     color: #222;
-    opacity: 0.8;
+    opacity: 0.85;
+    text-align: center;
+    margin-top: 8px;
 }
-
 /* Страница картины */
 
 .painting-page {
