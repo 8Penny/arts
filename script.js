@@ -21,7 +21,7 @@ fetch('data.json')
 
             painting.innerHTML = `
     <div>
-      <a href="index.html" class="back">
+        <a href="./" class="back">
         <img src="icons/back.svg" alt="Назад">
       </a>
 

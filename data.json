@@ -38,5 +38,115 @@
     "preview": "images/4.jpg",
     "image": "images/4.jpg",
     "description": "Описание."
+  },
+  {
+    "id": "painting-4",
+    "title": "Композиция",
+    "year": "2018",
+    "size": "100×80",
+    "tech": "холст, акрил",
+    "preview": "images/5.jpg",
+    "image": "images/5.jpg",
+    "description": "Описание."
+  },
+  {
+    "id": "painting-4",
+    "title": "Композиция",
+    "year": "2018",
+    "size": "100×80",
+    "tech": "холст, акрил",
+    "preview": "images/6.jpg",
+    "image": "images/6.jpg",
+    "description": "Описание."
+  },
+  {
+    "id": "painting-4",
+    "title": "Композиция",
+    "year": "2018",
+    "size": "100×80",
+    "tech": "холст, акрил",
+    "preview": "images/7.jpg",
+    "image": "images/7.jpg",
+    "description": "Описание."
+  },
+  {
+    "id": "painting-4",
+    "title": "Композиция",
+    "year": "2018",
+    "size": "100×80",
+    "tech": "холст, акрил",
+    "preview": "images/8.jpg",
+    "image": "images/8.jpg",
+    "description": "Описание."
+  },
+  {
+    "id": "painting-4",
+    "title": "Композиция",
+    "year": "2018",
+    "size": "100×80",
+    "tech": "холст, акрил",
+    "preview": "images/9.jpg",
+    "image": "images/9.jpg",
+    "description": "Описание."
+  },
+  {
+    "id": "painting-4",
+    "title": "Композиция",
+    "year": "2018",
+    "size": "100×80",
+    "tech": "холст, акрил",
+    "preview": "images/10.jpg",
+    "image": "images/10.jpg",
+    "description": "Описание."
+  },
+  {
+    "id": "painting-4",
+    "title": "Композиция",
+    "year": "2018",
+    "size": "100×80",
+    "tech": "холст, акрил",
+    "preview": "images/11.jpg",
+    "image": "images/11.jpg",
+    "description": "Описание."
+  },
+  {
+    "id": "painting-4",
+    "title": "Композиция",
+    "year": "2018",
+    "size": "100×80",
+    "tech": "холст, акрил",
+    "preview": "images/12.jpg",
+    "image": "images/12.jpg",
+    "description": "Описание."
+  },
+  {
+    "id": "painting-4",
+    "title": "Композиция",
+    "year": "2018",
+    "size": "100×80",
+    "tech": "холст, акрил",
+    "preview": "images/13.jpg",
+    "image": "images/13.jpg",
+    "description": "Описание."
+  },
+  {
+    "id": "painting-4",
+    "title": "Композиция",
+    "year": "2018",
+    "size": "100×80",
+    "tech": "холст, акрил",
+    "preview": "images/14.jpg",
+    "image": "images/14.jpg",
+    "description": "Описание."
+  },
+  {
+    "id": "painting-4",
+    "title": "Композиция",
+    "year": "2018",
+    "size": "100×80",
+    "tech": "холст, акрил",
+    "preview": "images/15.jpg",
+    "image": "images/15.jpg",
+    "description": "Описание."
   }
 ]
