@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Картины</title>
+    <title>Polinart</title>
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
+<canvas id="smokey-fluid-canvas"></canvas>
 
-<canvas id="shader-canvas"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/smokey-fluid-cursor@latest/dist/index.global.js"></script>
+
+<script type="module">
+    window.addEventListener("DOMContentLoaded", () => {
+        if (window.SmokyFluid) {
+            const fluid = SmokyFluid.initFluid();
+        } else {
+            console.error("SmokyFluid not found!");
+        }
+    });
+</script>
 <header>
     <h1>Альтернативные Картины </h1>
     <h2>Макарова Полина</h2>
@@ -26,7 +39,6 @@
 </footer>
 
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
 <script src="script.js"></script>
 
 </body>
