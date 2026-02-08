@@ -17,6 +17,7 @@
     window.addEventListener("DOMContentLoaded", () => {
         if (window.SmokyFluid) {
             const fluid = SmokyFluid.initFluid();
+
         } else {
             console.error("SmokyFluid not found!");
         }
@@ -29,6 +30,16 @@
 
 <main class="gallery" id="gallery"></main>
 
+<script>
+    const gallery = document.getElementById('gallery');
+
+    ['touchstart', 'touchmove', 'touchend'].forEach(eventName => {
+        gallery.addEventListener(eventName, (e) => {
+            // остановим распространение тача на window/canvas
+            e.stopPropagation();
+        }, { passive: true }); // passive true, чтобы свайпы работали
+    });
+</script>
 <footer>
     <a href="https://t.me/pds_yes" target="_blank">
         <img src="icons/telegram.svg" alt="Telegram">
