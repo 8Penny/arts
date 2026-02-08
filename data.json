@@ -5,7 +5,7 @@
     "year": "2024",
     "size": "40x40",
     "tech": "холст, акрил",
-    "preview": "images/1.jpg",
+    "preview": "images_p/1.jpg",
     "image": "images/1.jpg",
     "description": "Вдохновлена многообразием психических проявлений людей, как в обществе в целом, так и внутри каждого индивида. Как совместить 2 идеи: одновременно видеть многообразие других через собственное внутреннее множественное."
   },
@@ -15,7 +15,7 @@
     "year": "2026",
     "size": "100×120",
     "tech": "холст, акрил",
-    "preview": "images/2.png",
+    "preview": "images_p/2.png",
     "image": "images/2.png",
     "description": "Игра с необычным сочетанием форм и образов. В жизни простые и странные сочетания порой притягательнее любой нарочитой искусственной идеальности. Особое очарование естественного и неожиданного."
   },
@@ -25,7 +25,7 @@
     "year": "2024",
     "size": "50×70",
     "tech": "холст, акрил",
-    "preview": "images/3.jpg",
+    "preview": "images_p/3.jpg",
     "image": "images/3.jpg",
     "description": "Радужная вспышка на полотне символизирует внутреннее раскрытие. Картина исследует психологический парадокс: когда мы перестаем искать свои потребности снаружи и обращаемся внутрь себя, душа открывается, проявляя всю полноту и многоцветие внутреннего мира."
   },
@@ -35,7 +35,7 @@
     "year": "2024",
     "size": "40×50",
     "tech": "холст, акрил",
-    "preview": "images/4.jpg",
+    "preview": "images_p/4.jpg",
     "image": "images/4.jpg",
     "description": "Кажется, что перед нами три персонажа, но это иллюзия: здесь изображён внутренний мир одного человека. Меняющиеся цвета отражают эмоции, пробуждающие разные, непохожие друг на друга части личности, показывая сложность и многогранность внутреннего «я»."
   },
@@ -45,7 +45,7 @@
     "year": "2024",
     "size": "60×80",
     "tech": "холст, акрил",
-    "preview": "images/5.jpg",
+    "preview": "images_p/5.jpg",
     "image": "images/5.jpg",
     "description": "Парадокс. Мы прячем под масками свою искренность и в то же время внимательно изучаем других, жадно пытаясь ее отыскать."
   },
@@ -55,7 +55,7 @@
     "year": "2025",
     "size": "30×40",
     "tech": "холст, акрил",
-    "preview": "images/6.jpg",
+    "preview": "images_p/6.jpg",
     "image": "images/6.jpg",
     "description": ""
   },
@@ -65,7 +65,7 @@
     "year": "2024",
     "size": "40×40",
     "tech": "холст, акрил",
-    "preview": "images/7.jpg",
+    "preview": "images_p/7.jpg",
     "image": "images/7.jpg",
     "description": "Рассуждение о том, что первичным является не то, что мы делаем, а то, как именно видим этот мир, других людей и себя. "
   },
@@ -75,7 +75,7 @@
     "year": "2025",
     "size": "40×50",
     "tech": "холст, акрил",
-    "preview": "images/8.jpg",
+    "preview": "images_p/8.jpg",
     "image": "images/8.jpg",
     "description": ""
   },
@@ -85,7 +85,7 @@
     "year": "2025",
     "size": "60×80",
     "tech": "холст, масло",
-    "preview": "images/9.jpg",
+    "preview": "images_p/9.jpg",
     "image": "images/9.jpg",
     "description": ""
   },
@@ -95,7 +95,7 @@
     "year": "2025",
     "size": "40×50",
     "tech": "холст, акрил",
-    "preview": "images/10.jpg",
+    "preview": "images_p/10.jpg",
     "image": "images/10.jpg",
     "description": ""
   },
@@ -105,7 +105,7 @@
     "year": "2025",
     "size": "30×40",
     "tech": "холст, акрил",
-    "preview": "images/11.jpg",
+    "preview": "images_p/11.jpg",
     "image": "images/11.jpg",
     "description": ""
   },
@@ -115,7 +115,7 @@
     "year": "2025",
     "size": "20×20",
     "tech": "холст, акрил",
-    "preview": "images/12.jpg",
+    "preview": "images_p/12.jpg",
     "image": "images/12.jpg",
     "description": ""
   },
@@ -125,7 +125,7 @@
     "year": "2024",
     "size": "10×10",
     "tech": "холст, акрил",
-    "preview": "images/13.jpg",
+    "preview": "images_p/13.jpg",
     "image": "images/13.jpg",
     "description": "Часть триптиха - Стихии"
   },
@@ -135,7 +135,7 @@
     "year": "2024",
     "size": "10×10",
     "tech": "холст, акрил",
-    "preview": "images/14.jpg",
+    "preview": "images_p/14.jpg",
     "image": "images/14.jpg",
     "description": "Часть триптиха - Стихии"
   },
@@ -145,7 +145,7 @@
     "year": "2024",
     "size": "10×10",
     "tech": "холст, акрил",
-    "preview": "images/15.jpg",
+    "preview": "images_p/15.jpg",
     "image": "images/15.jpg",
     "description": "Часть триптиха - Стихии"
   }
