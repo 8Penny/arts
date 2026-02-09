@@ -33,7 +33,7 @@ fetch('data.json')
         <br>
         <p>${item.description}</p>
         
-        <a href="https://t.me/pds_yes" class="buy-btn" target="_blank">
+        <a href="https://t.me/pds_yes/5" class="buy-btn" target="_blank">
           Купить картину
         </a>
       </div>
