@@ -159,3 +159,36 @@ footer img:hover {
     z-index: -1; 
     pointer-events: none;
 }
+.price {
+    margin-top: 6px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #000;
+}
+.buy-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 14px;
+    padding: 12px 28px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #111, #333);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.buy-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: linear-gradient(135deg, #000, #222);
+    box-shadow: 0 8px 20px rgba(0,0,0,.18);
+}
+
+.buy-btn:active {
+    transform: scale(0.98);
+}

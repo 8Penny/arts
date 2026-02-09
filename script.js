@@ -29,8 +29,13 @@ fetch('data.json')
         <p><strong>${item.title}</strong></p>
         <p>${item.year} · ${item.size}</p>
         <p>${item.tech}</p>
+        <p class="price">${item.price}</p>
         <br>
         <p>${item.description}</p>
+        
+        <a href="https://t.me/pds_yes" class="buy-btn" target="_blank">
+          Купить картину
+        </a>
       </div>
     </div>
 
